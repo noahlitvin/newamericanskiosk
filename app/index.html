@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <title>Nek</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+
+        <div class="container">
+        </div>
+
+
+        <script id="AvatarTemplate" type="text/x-handlebars-template">
+            <div class="character">
+                <div class="hair"></div>
+                <div class="base"></div>
+            </div>
+        </script>
+
+        <script id="ScreensaverTemplate" type="text/x-handlebars-template">
+            <h1>Welcome</h1>
+            <h3>Touch anywhere to get started</h3>
+        </script>
+
+        <script id="ChooseLanguageTemplate" type="text/x-handlebars-template">
+            <h1>Please Select a Language</h1>
+            <a href="#" class="button" data-locale="en">English</a>
+            <a href="#" class="button" data-locale="es">Espanol</a>
+            <a href="#" class="button" data-locale="zh">Chinese</a>
+        </script>
+
+        <script id="WelcomeTemplate" type="text/x-handlebars-template">
+            <div class="modal-wrap">
+                <div class="modal">
+                    <h1>{{ I18n "welcome-hello" }}</h1>
+                    <h2>{{ I18n "welcome-explanation" }}</h2>
+                    <a class="close-modal big-button" href="#">{{ I18n "welcome-accept" }}</a>
+                </div>
+            </div>
+
+            <h2>{{ I18n "welcome-instruction" }}</h2>
+            <h4>Gender</h4>
+            <a href="#" class="button gender" data-gender="male">{{ I18n "welcome-male" }}</a>
+            <a href="#" class="button gender" data-gender="female">{{ I18n "welcome-female" }}</a>
+            <a href="#" class="button gender" data-gender="other">{{ I18n "welcome-other" }}</a>
+            <h4>Hair</h4>
+            <a href="#" class="button hairstyle" data-hairstyle="1">Style 1</a>
+            <a href="#" class="button hairstyle" data-hairstyle="2">Style 2</a>
+            <a href="#" class="button hairstyle" data-hairstyle="3">Style 3</a>
+            <a href="#" class="button hairstyle" data-hairstyle="4">Style 4</a>
+            <br>
+            <a href="#" class="button color haircolor" data-haircolor="1" style="background:#a8701d"></a>
+            <a href="#" class="button color haircolor" data-haircolor="2" style="background:#fdd744"></a>
+            <a href="#" class="button color haircolor" data-haircolor="3" style="background:#d96b0c"></a>
+            <a href="#" class="button color haircolor" data-haircolor="4" style="background:#483932"></a>
+            <a href="#" class="button color haircolor" data-haircolor="5" style="background:#e9ebf5"></a>
+            <h4>Skin</h4>
+            <a href="#" class="button color skin" data-skin="1" style="background:#f8d8c6"></a>
+            <a href="#" class="button color skin" data-skin="2" style="background:#d8b096"></a>
+            <a href="#" class="button color skin" data-skin="3" style="background:#d9a776"></a>
+            <a href="#" class="button color skin" data-skin="4" style="background:#8a4b2a"></a>
+            <a href="#" class="button color skin" data-skin="5" style="background:#43230d"></a>
+
+            <a href="#" class="big-button" id="next">{{ I18n "welcome-done" }}</a>
+
+        </script>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+
+        <!-- build:js scripts/main.js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/handlebars/handlebars.js"></script>
+        <script src="bower_components/jquery.i18n/src/jquery.i18n.js"></script>
+        <script src="bower_components/jquery.i18n/src/jquery.i18n.messagestore.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,900,800,700);
+html, body, .container {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+
+svg {
+  overflow: visible; }
+
+.container {
+  position: relative; }
+
+.modal-wrap {
+  background: rgba(0, 0, 0, 0.6);
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 3; }
+  .modal-wrap .modal {
+    display: block;
+    background: #ffffff;
+    width: 70%;
+    margin: 100px auto; }
+
+section {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  background: #ffffff;
+  text-align: center;
+  width: 50%;
+  float: left;
+  z-index: 1; }
+  section.full-width {
+    width: 100%; }
+
+.button {
+  display: inline-block;
+  margin: 0 5px 5px;
+  color: #000000;
+  background: #ffffff;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 12px;
+  -webkit-box-shadow: 0px 0px 6px 2px #e8e8e8;
+  -moz-box-shadow: 0px 0px 6px 2px #e8e8e8;
+  box-shadow: 0px 0px 6px 2px #e8e8e8;
+  -webkit-transition: all .3s;
+  transition: all .3s; }
+  .button:active {
+    background: #efefef; }
+  .button.selected {
+    background: #53BB96;
+    color: #ffffff; }
+  .button.color {
+    border: 3px solid #ffffff;
+    padding: 21px; }
+  .button.color.selected {
+    border-color: #53BB96; }
+
+.big-button {
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffff;
+  background: #53BB96;
+  font-size: 42px;
+  letter-spacing: .5px;
+  padding: 8px 12px;
+  -webkit-transition: all .3s;
+  transition: all .3s; }
+  .big-button:active {
+    background: #3e9d7b; }
+
+#stage {
+  display: block;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  z-index: 0;
+  background: #fafafa; }
+  #stage .character {
+    display: block;
+    position: relative;
+    top: 50%;
+    width: 50%;
+    margin: 0 auto;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+    #stage .character .hair {
+      position: absolute;
+      top: 0;
+      width: 100%; }
+      #stage .character .hair.color-1 path {
+        fill: #a8701d; }
+      #stage .character .hair.color-2 path {
+        fill: #fdd744; }
+      #stage .character .hair.color-3 path {
+        fill: #d96b0c; }
+      #stage .character .hair.color-4 path {
+        fill: #483932; }
+      #stage .character .hair.color-5 path {
+        fill: #e9ebf5; }
+    #stage .character .base.color-1 .st0 {
+      fill: #f8d8c6; }
+    #stage .character .base.color-2 .st0 {
+      fill: #d8b096; }
+    #stage .character .base.color-3 .st0 {
+      fill: #d9a776; }
+    #stage .character .base.color-4 .st0 {
+      fill: #8a4b2a; }
+    #stage .character .base.color-5 .st0 {
+      fill: #43230d; }
+
+section#Welcome #next {
+  position: absolute;
+  width: 100%;
+  bottom: 0; }
+
+/*# sourceMappingURL=main.css.map */
