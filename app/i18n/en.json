@@ -6,5 +6,8 @@
 	"welcome-male": "Male",
 	"welcome-female": "Female",
 	"welcome-other": "Other",
-	"welcome-done": "All set!"
+	"welcome-done": "All set!",
+
+	"origin-from": "I am from",
+	"origin-live": "and I currently live in"
 }

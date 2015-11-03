@@ -14,7 +14,8 @@ app = {};
 app.steps = [
     "ScreensaverView",
     "ChooseLanguageView",
-    "WelcomeView"
+    "WelcomeView",
+    "OriginView"
 ];
 app.currentStep = 0;
 
@@ -111,20 +112,28 @@ app.AvatarView = Backbone.View.extend({
           case 'skin':
             view.update_skin(value);
             break;
+          case 'gender':
+            view.update_gender(value);
+            break;
       }
     });
   },
 
   update_hairstyle: function(newValue) {
     this.$el.find('.character .hair').load( "images/character/hair-"+newValue+".svg");
+    $("#stage .character .hair").attr('data-style', newValue );
   },
 
   update_haircolor: function(newValue) {
-    $("#stage .character .hair").removeClass().addClass('hair color-' + newValue );
+    $("#stage .character .hair").attr('data-color', newValue );
   },
 
   update_skin: function(newValue) {
-    $("#stage .character .base").removeClass().addClass('base color-' + newValue );
+    $("#stage .character .base").attr('data-color', newValue );
+  },
+
+  update_gender: function(newValue) {
+    $("#stage .character .base").attr('data-gender', newValue );
   }
 
 });
@@ -207,7 +216,8 @@ app.WelcomeView = Backbone.View.extend({
     "click .gender": "select_gender",
     "click .hairstyle": "select_hairstyle",
     "click .haircolor": "select_haircolor",
-    "click .skin": "select_skin"
+    "click .skin": "select_skin",
+    "click #next": "next"
   },
 
   close_modal: function(e) {
@@ -242,5 +252,57 @@ app.WelcomeView = Backbone.View.extend({
     $(e.target).addClass('selected');
     app.User.set({skin: $(e.target).attr('data-skin') });
   },
+
+  next: function(e) {
+    e.preventDefault();
+    this.$el.remove();
+    this.parent.nextStep();
+  }
+
+});
+
+
+
+app.OriginView = Backbone.View.extend({
+  tagName: "section",
+  id: "Origin",
+
+  initialize: function(options) {
+    this.parent = options.parent;
+  },
+
+  render: function(){
+    var source = $('#OriginTemplate').html();
+    var template = Handlebars.compile(source);
+    var html = template();
+    this.$el.html(html);
+    this.parent.$el.append(this.el);
+
+    var view = this;
+
+    _.defer(function(){
+      view.$el.find('#select-country').selectize({
+        onChange: function(value) {
+          view.parent.model.set('country',value);
+          if(view.parent.model.get('borough')){
+            view.next();
+          }
+        }
+      });
+      view.$el.find('#select-borough').selectize({
+        onChange: function(value) {
+          view.parent.model.set('borough',value);
+          if(view.parent.model.get('country')){
+            view.next();
+          }
+        }
+      });
+    });
+  },
+
+  next: function(e) {
+    this.$el.remove();
+    this.parent.nextStep();
+  }
 
 });

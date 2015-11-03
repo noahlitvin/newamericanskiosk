@@ -1,4 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,900,800,700);
+@import url("../bower_components/selectize/dist/css/selectize.css");
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 html, body, .container {
 	height:100%;
@@ -102,18 +110,31 @@ section {
 			position:absolute;
 			top:0;
 			width:100%;
-			&.color-1 path { fill:#a8701d; }
-			&.color-2 path { fill:#fdd744; }
-			&.color-3 path { fill:#d96b0c; }
-			&.color-4 path { fill:#483932; }
-			&.color-5 path { fill:#e9ebf5; }
+			&[data-color='1'] path { fill:#a8701d; }
+			&[data-color='2'] path { fill:#fdd744; }
+			&[data-color='3'] path { fill:#d96b0c; }
+			&[data-color='4'] path { fill:#483932; }
+			&[data-color='5'] path { fill:#e9ebf5; }
+
+			&[data-style='1'] { transform: translate(-1px,-19px) scale(.99); }
+			&[data-style='2'] { transform: translate(-1px,-19px) scale(1.1); }
+			&[data-style='3'] { transform: translate(0px,-24px) scale(.86); }
+			&[data-style='4'] { transform: translate(0px,-27px) scale(.86); }
 		}
 		.base {
-			&.color-1 .st0 { fill:#f8d8c6; }
-			&.color-2 .st0 { fill:#d8b096; }
-			&.color-3 .st0 { fill:#d9a776; }
-			&.color-4 .st0 { fill:#8a4b2a; }
-			&.color-5 .st0 { fill:#43230d; }
+			&[data-color='1'] .st0 { fill:#f8d8c6; }
+			&[data-color='2'] .st0 { fill:#d8b096; }
+			&[data-color='3'] .st0 { fill:#d9a776; }
+			&[data-color='4'] .st0 { fill:#8a4b2a; }
+			&[data-color='5'] .st0 { fill:#43230d; }
+
+			.body-option { visibility:hidden; }
+
+			&[data-gender='male'] .male-body { visibility:visible; }
+			&[data-gender='female'] .female-body { visibility:visible; }
+			&[data-gender='other'] .other-body { visibility:visible; }
+			&:not([data-gender]) .generic-body { visibility:visible; }
+
 		}
 	}
 }
