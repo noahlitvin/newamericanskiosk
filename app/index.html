@@ -56,19 +56,22 @@
             <a href="#" class="button gender" data-gender="male">{{ I18n "welcome-male" }}</a>
             <a href="#" class="button gender" data-gender="female">{{ I18n "welcome-female" }}</a>
             <a href="#" class="button gender" data-gender="other">{{ I18n "welcome-other" }}</a>
-            <br>
-            <a href="#" class="button hairstyle" data-hairstyle="1">Style 1</a>
-            <a href="#" class="button hairstyle" data-hairstyle="2">Style 2</a>
-            <a href="#" class="button hairstyle" data-hairstyle="3">Style 3</a>
-            <a href="#" class="button hairstyle" data-hairstyle="4">Style 4</a>
-            <br>
-            <a href="#" class="button color haircolor" data-haircolor="1" style="background:#a8701d"></a>
-            <a href="#" class="button color haircolor" data-haircolor="2" style="background:#fdd744"></a>
-            <a href="#" class="button color haircolor" data-haircolor="3" style="background:#d96b0c"></a>
-            <a href="#" class="button color haircolor" data-haircolor="4" style="background:#483932"></a>
-            <a href="#" class="button color haircolor" data-haircolor="5" style="background:#e9ebf5"></a>
-            <br>
-            <input id="skin" type="range">
+            <div class="hairstyle-wrap hide">
+                <a href="#" class="button hairstyle" data-hairstyle="1">Style 1</a>
+                <a href="#" class="button hairstyle" data-hairstyle="2">Style 2</a>
+                <a href="#" class="button hairstyle" data-hairstyle="3">Style 3</a>
+                <a href="#" class="button hairstyle" data-hairstyle="4">Style 4</a>
+            </div>
+            <div class="haircolor-wrap hide">
+                <a href="#" class="button color haircolor" data-haircolor="1" style="background:#a8701d"></a>
+                <a href="#" class="button color haircolor" data-haircolor="2" style="background:#fdd744"></a>
+                <a href="#" class="button color haircolor" data-haircolor="3" style="background:#d96b0c"></a>
+                <a href="#" class="button color haircolor" data-haircolor="4" style="background:#483932"></a>
+                <a href="#" class="button color haircolor" data-haircolor="5" style="background:#e9ebf5"></a>
+            </div>
+            <div class="skin-wrap hide">
+                <input id="skin" type="range">
+            </div>
 
             <a href="#" class="big-button next">{{ I18n "welcome-done" }}</a>
 
@@ -325,6 +328,7 @@
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
             </select>
+            <div class="borough-wrap hide">
             <h2>{{ I18n "origin-live" }}</h2>
             <select id="select-borough">
                 <option value=""></option>
@@ -334,6 +338,7 @@
                 <option value="bronx">Bronx</option>
                 <option value="statenisland">Staten Island</option>
             </select>
+            </div>
         </script>
 
         <script id="ConcernsTemplate" type="text/x-handlebars-template">

@@ -313,23 +313,26 @@ app.WelcomeView = app.BaseStepView.extend({
 
   select_gender: function (e){
     e.preventDefault();
-    $(".button.gender").removeClass('selected');
+    this.$el.find(".button.gender").removeClass('selected');
     $(e.target).addClass('selected');
     app.User.set({gender: $(e.target).attr('data-gender') });
+    this.$el.find('.hairstyle-wrap').removeClass('hide');
   },
 
   select_hairstyle: function (e){
     e.preventDefault();
-    $(".button.hairstyle").removeClass('selected');
+    this.$el.find(".button.hairstyle").removeClass('selected');
     $(e.target).addClass('selected');
     app.User.set({hairstyle: $(e.target).attr('data-hairstyle') });
+    this.$el.find('.haircolor-wrap').removeClass('hide');
   },
 
   select_haircolor: function (e){
     e.preventDefault();
-    $(".button.haircolor").removeClass('selected');
+    this.$el.find(".button.haircolor").removeClass('selected');
     $(e.target).addClass('selected');
     app.User.set({haircolor: $(e.target).attr('data-haircolor') });
+    this.$el.find('.skin-wrap').removeClass('hide');
   }
 
 });
@@ -343,17 +346,13 @@ app.OriginView = app.BaseStepView.extend({
     view.$el.find('#select-country').selectize({
       onChange: function(value) {
         view.parent.model.set('country',value);
-        if(view.parent.model.get('borough')){
-          view.next();
-        }
+        view.$el.find('.borough-wrap').removeClass('hide');
       }
     });
     view.$el.find('#select-borough').selectize({
       onChange: function(value) {
         view.parent.model.set('borough',value);
-        if(view.parent.model.get('country')){
-          view.next();
-        }
+        view.next();
       }
     });
   }
