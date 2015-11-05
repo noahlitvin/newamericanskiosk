@@ -1,0 +1,76 @@
+.rangeslider,
+.rangeslider__fill {
+  display: block;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.rangeslider {
+background: rgb(248,216,198);
+background: -moz-linear-gradient(left,  rgba(248,216,198,1) 0%, rgba(216,176,150,1) 25%, rgba(217,167,118,1) 50%, rgba(138,75,42,1) 75%, rgba(67,35,13,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(248,216,198,1)), color-stop(25%,rgba(216,176,150,1)), color-stop(50%,rgba(217,167,118,1)), color-stop(75%,rgba(138,75,42,1)), color-stop(100%,rgba(67,35,13,1)));
+background: -webkit-linear-gradient(left,  rgba(248,216,198,1) 0%,rgba(216,176,150,1) 25%,rgba(217,167,118,1) 50%,rgba(138,75,42,1) 75%,rgba(67,35,13,1) 100%);
+background: -o-linear-gradient(left,  rgba(248,216,198,1) 0%,rgba(216,176,150,1) 25%,rgba(217,167,118,1) 50%,rgba(138,75,42,1) 75%,rgba(67,35,13,1) 100%);
+background: -ms-linear-gradient(left,  rgba(248,216,198,1) 0%,rgba(216,176,150,1) 25%,rgba(217,167,118,1) 50%,rgba(138,75,42,1) 75%,rgba(67,35,13,1) 100%);
+background: linear-gradient(to right,  rgba(248,216,198,1) 0%,rgba(216,176,150,1) 25%,rgba(217,167,118,1) 50%,rgba(138,75,42,1) 75%,rgba(67,35,13,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8d8c6', endColorstr='#43230d',GradientType=1 );
+  position: relative;
+}
+
+.rangeslider--horizontal {
+  height: 20px;
+  width: 100%;
+}
+
+.rangeslider--vertical {
+  width: 20px;
+  min-height: 150px;
+  max-height: 100%;
+}
+
+.rangeslider--disabled {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  opacity: 0.4;
+}
+
+.rangeslider__fill {
+  position: absolute;
+}
+.rangeslider--horizontal .rangeslider__fill {
+  top: 0;
+  height: 100%;
+}
+.rangeslider--vertical .rangeslider__fill {
+  bottom: 0;
+  width: 100%;
+}
+
+.rangeslider__handle {
+  background: white;
+  border: 3px solid #fff;
+  cursor: pointer;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.rangeslider--horizontal .rangeslider__handle {
+  top: -10px;
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+}
+.rangeslider--vertical .rangeslider__handle {
+  left: -10px;
+  touch-action: pan-x;
+  -ms-touch-action: pan-x;
+}
+
+input[type="range"]:focus + .rangeslider .rangeslider__handle {
+  -moz-box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+  -webkit-box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.9);
+}

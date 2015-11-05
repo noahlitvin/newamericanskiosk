@@ -142,7 +142,7 @@ app.AvatarView = Backbone.View.extend({
   },
 
   update_skin: function(newValue) {
-    $("#stage .character .base").attr('data-color', newValue );
+    $("#stage .character .base .st0").css('fill', newValue );
   },
 
   update_gender: function(newValue) {
@@ -234,9 +234,7 @@ app.BaseStepView = Backbone.View.extend({
     });
   },
 
-  afterRender: function(){
-
-  },
+  afterRender: function(){},
 
   print: function(e){
     if(e){
@@ -264,14 +262,53 @@ app.WelcomeView = app.BaseStepView.extend({
       "click .close-modal": "close_modal",
       "click .gender": "select_gender",
       "click .hairstyle": "select_hairstyle",
-      "click .haircolor": "select_haircolor",
-      "click .skin": "select_skin",
+      "click .haircolor": "select_haircolor"
     });
   },
 
   close_modal: function(e) {
     e.preventDefault();
     $(e.target).parents('.modal-wrap').fadeOut();
+  },
+
+  afterRender: function() {
+    this.$el.find('input[type="range"]').rangeslider({
+      polyfill: false,
+      onSlide: function(position, value) {
+
+        function colorBetween(color2,color1,ratio) {
+          var hex = function(x) {
+              x = x.toString(16);
+              return (x.length == 1) ? '0' + x : x;
+          };
+          
+          var r = Math.ceil(parseInt(color1.substring(0,2), 16) * ratio + parseInt(color2.substring(0,2), 16) * (1-ratio));
+          var g = Math.ceil(parseInt(color1.substring(2,4), 16) * ratio + parseInt(color2.substring(2,4), 16) * (1-ratio));
+          var b = Math.ceil(parseInt(color1.substring(4,6), 16) * ratio + parseInt(color2.substring(4,6), 16) * (1-ratio));
+          
+          return hex(r) + hex(g) + hex(b);
+        }
+
+        var color;
+        if(value < 25){
+          value = value * 4 / 100;
+          color = colorBetween('F8D8C6','D8B096',value);
+        }else if(value < 50){
+          value = (value - 25) * 4 / 100;
+          color = colorBetween('D8B096','d9a776',value);
+        }else if(value < 75){
+          value = (value - 50) * 4 / 100;
+          color = colorBetween('d9a776','8a4b2a',value);
+        }else{
+          value = (value - 75) * 4 / 100;
+          color = colorBetween('8a4b2a','43230d',value);
+        }
+        color = "#" + color;
+
+        this.$handle.css('background-color', color);
+        app.User.set({skin: color });
+      }
+    }).change();
   },
 
   select_gender: function (e){
@@ -293,13 +330,6 @@ app.WelcomeView = app.BaseStepView.extend({
     $(".button.haircolor").removeClass('selected');
     $(e.target).addClass('selected');
     app.User.set({haircolor: $(e.target).attr('data-haircolor') });
-  },
-
-  select_skin: function (e){
-    e.preventDefault();
-    $(".button.skin").removeClass('selected');
-    $(e.target).addClass('selected');
-    app.User.set({skin: $(e.target).attr('data-skin') });
   }
 
 });
