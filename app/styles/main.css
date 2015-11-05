@@ -162,7 +162,7 @@ a {
     #stage .character .base:not([data-gender]) .generic-body {
       visibility: visible; }
 
-section#Welcome #next {
+section#Welcome .next {
   position: absolute;
   width: 100%;
   bottom: 0; }

@@ -208,29 +208,65 @@ app.ChooseLanguageView = Backbone.View.extend({
   }
 });
 
-app.WelcomeView = Backbone.View.extend({
-  tagName: "section",
-  id: "Welcome",
+
+app.BaseStepView = Backbone.View.extend({
+  tagName: 'section',
+
+  events: {
+    "click a.print": "print",
+    "click a.next": "next"
+  },
 
   initialize: function(options) {
     this.parent = options.parent;
   },
 
   render: function(){
-    var source = $('#WelcomeTemplate').html();
+    var source = $(this.templateSelector).html();
     var template = Handlebars.compile(source);
     var html = template();
     this.$el.html(html);
     this.parent.$el.append(this.el);
+
+    var view = this;
+    _.defer(function(){
+      view.afterRender();
+    });
   },
 
-  events: {
-    "click .close-modal": "close_modal",
-    "click .gender": "select_gender",
-    "click .hairstyle": "select_hairstyle",
-    "click .haircolor": "select_haircolor",
-    "click .skin": "select_skin",
-    "click #next": "next"
+  afterRender: function(){
+
+  },
+
+  print: function(e){
+    if(e){
+      e.preventDefault();   
+    }
+    this.parent.print({asset: $(e.target).attr('data-print')});
+  },
+
+  next: function(e) {
+    if(e){
+      e.preventDefault();   
+    }
+    this.$el.remove();
+    this.parent.nextStep();
+  }
+
+});
+
+app.WelcomeView = app.BaseStepView.extend({
+  id: "Welcome",
+  templateSelector: "#WelcomeTemplate",
+
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click .close-modal": "close_modal",
+      "click .gender": "select_gender",
+      "click .hairstyle": "select_hairstyle",
+      "click .haircolor": "select_haircolor",
+      "click .skin": "select_skin",
+    });
   },
 
   close_modal: function(e) {
@@ -264,80 +300,44 @@ app.WelcomeView = Backbone.View.extend({
     $(".button.skin").removeClass('selected');
     $(e.target).addClass('selected');
     app.User.set({skin: $(e.target).attr('data-skin') });
-  },
-
-  next: function(e) {
-    e.preventDefault();
-    this.$el.remove();
-    this.parent.nextStep();
   }
 
 });
 
-app.OriginView = Backbone.View.extend({
-  tagName: "section",
+app.OriginView = app.BaseStepView.extend({
   id: "Origin",
+  templateSelector: '#OriginTemplate',
 
-  initialize: function(options) {
-    this.parent = options.parent;
-  },
-
-  render: function(){
-    var source = $('#OriginTemplate').html();
-    var template = Handlebars.compile(source);
-    var html = template();
-    this.$el.html(html);
-    this.parent.$el.append(this.el);
-
+  afterRender: function(){
     var view = this;
-
-    _.defer(function(){
-      view.$el.find('#select-country').selectize({
-        onChange: function(value) {
-          view.parent.model.set('country',value);
-          if(view.parent.model.get('borough')){
-            view.next();
-          }
+    view.$el.find('#select-country').selectize({
+      onChange: function(value) {
+        view.parent.model.set('country',value);
+        if(view.parent.model.get('borough')){
+          view.next();
         }
-      });
-      view.$el.find('#select-borough').selectize({
-        onChange: function(value) {
-          view.parent.model.set('borough',value);
-          if(view.parent.model.get('country')){
-            view.next();
-          }
-        }
-      });
+      }
     });
-  },
-
-  next: function(e) {
-    this.$el.remove();
-    this.parent.nextStep();
+    view.$el.find('#select-borough').selectize({
+      onChange: function(value) {
+        view.parent.model.set('borough',value);
+        if(view.parent.model.get('country')){
+          view.next();
+        }
+      }
+    });
   }
 
 });
 
-app.ConcernsView = Backbone.View.extend({
-  tagName: "section",
+app.ConcernsView = app.BaseStepView.extend({
   id: "Concerns",
+  templateSelector: '#ConcernsTemplate',
 
-  initialize: function(options) {
-    this.parent = options.parent;
-  },
-
-  render: function(){
-    var source = $('#ConcernsTemplate').html();
-    var template = Handlebars.compile(source);
-    var html = template();
-    this.$el.html(html);
-    this.parent.$el.append(this.el);
-  },
-
-  events: {
-    "click a.concern-option": "optionSelect",
-    "click a.print": "print",
-    "click a.next": "next"
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click a.concern-option": "optionSelect"
+    });
   },
 
   optionSelect: function(e){
@@ -347,40 +347,17 @@ app.ConcernsView = Backbone.View.extend({
     this.$el.find('.modal-wrap').removeClass('hide');
   },
 
-  print: function(e){
-    e.preventDefault();
-    this.parent.print({asset: $(e.target).attr('data-print')});
-  },
-
-  next: function(e) {
-    e.preventDefault();
-    this.$el.remove();
-    this.parent.nextStep();
-  }
-
 });
 
-app.BankView = Backbone.View.extend({
-  tagName: "section",
+app.BankView = app.BaseStepView.extend({
   id: "Bank",
+  templateSelector: '#BankTemplate',
 
-  initialize: function(options) {
-    this.parent = options.parent;
-  },
-
-  render: function(){
-    var source = $('#BankTemplate').html();
-    var template = Handlebars.compile(source);
-    var html = template();
-    this.$el.html(html);
-    this.parent.$el.append(this.el);
-  },
-
-  events: {
-    "click a.print": "print",
-    "click a.next": "next",
-    "click a.bank-1-option": "option1Select",
-    "click a.bank-2-option": "option2Select"
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click a.bank-1-option": "option1Select",
+      "click a.bank-2-option": "option2Select"
+    });
   },
 
   option1Select: function(e){
@@ -405,40 +382,19 @@ app.BankView = Backbone.View.extend({
     this.$el.find(".bank-2-option.selected").removeClass('selected');
     $(e.target).addClass('selected');
     this.$el.find('.modal-wrap').removeClass('hide');
-  },
-
-  print: function(e){
-    e.preventDefault();
-    this.parent.print({asset: $(e.target).attr('data-print')});
-  },
-
-  next: function(e) {
-    this.$el.remove();
-    this.parent.nextStep();
   }
 
 });
 
-app.CreditView = Backbone.View.extend({
-  tagName: "section",
+
+app.CreditView = app.BaseStepView.extend({
   id: "Credit",
+  templateSelector: '#CreditTemplate',
 
-  initialize: function(options) {
-    this.parent = options.parent;
-  },
-
-  render: function(){
-    var source = $('#CreditTemplate').html();
-    var template = Handlebars.compile(source);
-    var html = template();
-    this.$el.html(html);
-    this.parent.$el.append(this.el);
-  },
-
-  events: {
-    "click a.credit-option": "optionSelect",
-    "click a.print": "print",
-    "click a.next": "next"
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click a.credit-option": "optionSelect"
+    });
   },
 
   optionSelect: function(e){
@@ -449,17 +405,8 @@ app.CreditView = Backbone.View.extend({
     }else{
       this.$el.find('.modal-wrap').removeClass('hide');
     }
-  },
-
-  print: function(e){
-    e.preventDefault();
-    this.parent.print({asset: $(e.target).attr('data-print')});
-  },
-
-  next: function(e) {
-    e.preventDefault();
-    this.$el.remove();
-    this.parent.nextStep();
   }
 
 });
+
+
