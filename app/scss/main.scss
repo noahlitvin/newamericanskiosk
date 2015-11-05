@@ -25,6 +25,7 @@ svg { overflow:visible; }
 .container { position:relative; }
 
 .hide, .modal-wrap.hide { display:none; }
+.invisible { visibility:hidden; }
 
 .modal-wrap {
 	background:rgba(0,0,0,.6);
@@ -126,7 +127,7 @@ a {
 	height:100%;
 	right:0;
 	z-index:0;
-	background:#fafafa;
+	background:#E3FCFF;
 	.character {
 		display:block;
 		position:relative;
@@ -159,6 +160,55 @@ a {
 			&:not([data-gender]) .generic-body { visibility:visible; }
 
 		}
+	}
+	.flag {
+		display:block;
+		position:absolute;
+		top:50%;
+		left:75%;
+		width:100px;
+		height:75px;
+		background-size:cover;
+		transform:rotate(3deg);
+		&:before {
+			content:"";
+			display:block;
+			background:#634E42;
+			width:8px;
+			height:150px;
+			border-radius:4px;
+			margin:-4px 0 0 -4px;
+		}
+	}
+	.ground {
+		display:block;
+		position:absolute;
+		width:100%;
+		height:45%;
+		background:red;
+		bottom:0;
+		z-index:-1;
+		background: rgb(234,234,234);
+		background: -moz-linear-gradient(top, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 66%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(234,234,234,1)), color-stop(66%,rgba(255,255,255,1)));
+		background: -webkit-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 66%);
+		background: -o-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 66%);
+		background: -ms-linear-gradient(top, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 66%);
+		background: linear-gradient(to bottom, rgba(234,234,234,1) 0%,rgba(255,255,255,1) 66%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff',GradientType=0 );
+	}
+	.background {
+		display:block;
+		position:absolute;
+		width:100%;
+		height:100%;
+		background-size:contain;
+		background-position:0 bottom;
+		background-repeat:no-repeat;
+		bottom:0;
+		transition: bottom 1s;
+		z-index:-2;
+		&.up { bottom:45%; }
 	}
 }
 

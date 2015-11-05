@@ -128,6 +128,12 @@ app.AvatarView = Backbone.View.extend({
           case 'gender':
             view.update_gender(value);
             break;
+          case 'country':
+            view.update_country(value);
+            break;
+          case 'borough':
+            view.update_borough(value);
+            break;
       }
     });
   },
@@ -147,6 +153,14 @@ app.AvatarView = Backbone.View.extend({
 
   update_gender: function(newValue) {
     $("#stage .character .base").attr('data-gender', newValue );
+  },
+
+  update_country: function(newValue) {
+    $(".flag").removeClass('invisible').css("background-image","url('/bower_components/flag-icon-css/flags/4x3/"+newValue.toLowerCase()+".svg')" );
+  },
+
+  update_borough: function(newValue) {
+    $(".background").addClass('up').css("background-image","url('/images/background/"+newValue.toLowerCase()+".svg')" );
   }
 
 });
