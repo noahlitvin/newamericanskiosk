@@ -134,6 +134,9 @@ app.AvatarView = Backbone.View.extend({
           case 'borough':
             view.update_borough(value);
             break;
+          case 'has_bank_account':
+            view.update_has_bank_account(value);
+            break;
       }
     });
   },
@@ -161,6 +164,16 @@ app.AvatarView = Backbone.View.extend({
 
   update_borough: function(newValue) {
     $(".background").addClass('up').css("background-image","url('/images/background/"+newValue.toLowerCase()+".svg')" );
+  },
+
+  update_has_bank_account: function(newValue) {
+    if(newValue){
+      $("#stage .bank").removeClass('invisible');
+      $("#stage .safe").addClass('invisible');
+    }else{
+      $("#stage .bank").addClass('invisible');
+      $("#stage .safe").removeClass('invisible');
+    }
   }
 
 });

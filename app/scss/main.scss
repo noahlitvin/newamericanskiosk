@@ -134,6 +134,7 @@ a {
 		top:50%;
 		width:50%;
 		margin:0 auto;
+		z-index:5;
 		-webkit-transform:translateY(-50%);
 		transform:translateY(-50%);
 		.hair {
@@ -160,6 +161,26 @@ a {
 			&:not([data-gender]) .generic-body { visibility:visible; }
 
 		}
+	}
+	.bank {
+		display:block;
+		position:absolute;
+		bottom:45%;
+		left:4%;
+		width:300px;
+		height:180px;
+		background: url('../images/props/bank.svg') no-repeat;
+		background-size:contain;
+	}
+	.safe {
+		display:block;
+		position:absolute;
+		bottom:35%;
+		left:12%;
+		width:100px;
+		height:100px;
+		background: url('../images/props/safe.svg') no-repeat;
+		background-size:contain;
 	}
 	.flag {
 		display:block;
@@ -212,6 +233,14 @@ a {
 	}
 }
 
+.row {
+	&:after { content:""; display:block; clear:both; }
+	.column {
+		display:inline-block;
+		float:left;
+		width:33%;
+	}
+}
 
 section#Welcome {
 

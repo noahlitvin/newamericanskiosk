@@ -189,6 +189,7 @@ a {
     top: 50%;
     width: 50%;
     margin: 0 auto;
+    z-index: 5;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
     #stage .character .hair {
@@ -223,6 +224,24 @@ a {
       visibility: visible; }
     #stage .character .base:not([data-gender]) .generic-body {
       visibility: visible; }
+  #stage .bank {
+    display: block;
+    position: absolute;
+    bottom: 45%;
+    left: 4%;
+    width: 300px;
+    height: 180px;
+    background: url("../images/props/bank.svg") no-repeat;
+    background-size: contain; }
+  #stage .safe {
+    display: block;
+    position: absolute;
+    bottom: 35%;
+    left: 12%;
+    width: 100px;
+    height: 100px;
+    background: url("../images/props/safe.svg") no-repeat;
+    background-size: contain; }
   #stage .flag {
     display: block;
     position: absolute;
@@ -269,6 +288,15 @@ a {
     z-index: -2; }
     #stage .background.up {
       bottom: 45%; }
+
+.row:after {
+  content: "";
+  display: block;
+  clear: both; }
+.row .column {
+  display: inline-block;
+  float: left;
+  width: 33%; }
 
 section#Welcome .next {
   position: absolute;
