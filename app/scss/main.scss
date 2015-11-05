@@ -1,6 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,900,800,700);
 @import url("../bower_components/selectize/dist/css/selectize.css");
 
+// @import url("../bower_components/normalize-css/normalize.css");
+
+$primary-color: #53BB96;
+
 html {
   box-sizing: border-box;
 }
@@ -19,6 +23,8 @@ svg { overflow:visible; }
 
 .container { position:relative; }
 
+.hide, .modal-wrap.hide { display:none; }
+
 .modal-wrap {
 	background:rgba(0,0,0,.6);
 	display:block;
@@ -30,9 +36,13 @@ svg { overflow:visible; }
 	.modal {
 		display:block;
 		background:#ffffff;
+		padding:25px;
 		width:70%;
-		margin:100px auto;
+		height:80vh;
+		margin:10vh auto 0;
+		overflow-y:auto;
 	}
+
 }
 
 section {
@@ -47,6 +57,11 @@ section {
     float:left;
     z-index:1;
     &.full-width { width:100%; }
+}
+
+a {
+	text-decoration:none;
+	color: $primary-color;
 }
 
 .button {
@@ -66,20 +81,21 @@ section {
 		background:#efefef;
 	}
 	&.selected {
-		background:#53BB96;
+		background:$primary-color;
 		color:#ffffff;
 	}
 
 	&.color { border:3px solid #ffffff; padding:21px;}
-	&.color.selected { border-color: #53BB96; }
+	&.color.selected { border-color: $primary-color; }
 }
 
 .big-button {
 	display: block;
 	text-decoration: none;
 	font-weight:bold;
+	border-radius:3px;
 	color:#ffffff;
-	background:#53BB96;
+	background:$primary-color;
 	font-size:42px;
 	letter-spacing: .5px;
 	padding:8px 12px;
@@ -87,6 +103,18 @@ section {
 	transition:all .3s;
 	&:active {
 		background:#3e9d7b;
+	}
+
+	&.toggle {
+		color:#000000;
+		background:#ffffff;
+		-webkit-box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
+		-moz-box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
+		box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
+	}
+	&.toggle.selected {
+		color:#ffffff;
+		background:$primary-color;
 	}
 }
 

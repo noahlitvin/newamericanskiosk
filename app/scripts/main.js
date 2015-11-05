@@ -15,7 +15,10 @@ app.steps = [
     "ScreensaverView",
     "ChooseLanguageView",
     "WelcomeView",
-    "OriginView"
+    "OriginView",
+    "ConcernsView",
+    "BankView",
+    "CreditView"
 ];
 app.currentStep = 0;
 
@@ -73,6 +76,16 @@ app.NewAmericansKioskView = Backbone.View.extend({
     var currentView = new app[app.steps[app.currentStep]]({parent: this});
     currentView.render();
     app.Router.navigate('step/' + app.currentStep);
+  },
+
+  print: function(options) {
+    if(!options.asset){
+      alert('Not available yet. Sorry!');
+      return;
+    }
+    var target = "../print/" + app.User.get('locale') + "/" + options.asset
+    var w = window.open(target);
+    w.print();
   }
 
 });
@@ -261,8 +274,6 @@ app.WelcomeView = Backbone.View.extend({
 
 });
 
-
-
 app.OriginView = Backbone.View.extend({
   tagName: "section",
   id: "Origin",
@@ -301,6 +312,152 @@ app.OriginView = Backbone.View.extend({
   },
 
   next: function(e) {
+    this.$el.remove();
+    this.parent.nextStep();
+  }
+
+});
+
+app.ConcernsView = Backbone.View.extend({
+  tagName: "section",
+  id: "Concerns",
+
+  initialize: function(options) {
+    this.parent = options.parent;
+  },
+
+  render: function(){
+    var source = $('#ConcernsTemplate').html();
+    var template = Handlebars.compile(source);
+    var html = template();
+    this.$el.html(html);
+    this.parent.$el.append(this.el);
+  },
+
+  events: {
+    "click a.concern-option": "optionSelect",
+    "click a.print": "print",
+    "click a.next": "next"
+  },
+
+  optionSelect: function(e){
+    e.preventDefault();
+    app.User.set({concerned: $(e.target).attr('data-concerned') === 'true' });
+    this.$el.find('.modal-wrap .' + $(e.target).attr('data-concerned')).removeClass('hide');
+    this.$el.find('.modal-wrap').removeClass('hide');
+  },
+
+  print: function(e){
+    e.preventDefault();
+    this.parent.print({asset: $(e.target).attr('data-print')});
+  },
+
+  next: function(e) {
+    e.preventDefault();
+    this.$el.remove();
+    this.parent.nextStep();
+  }
+
+});
+
+app.BankView = Backbone.View.extend({
+  tagName: "section",
+  id: "Bank",
+
+  initialize: function(options) {
+    this.parent = options.parent;
+  },
+
+  render: function(){
+    var source = $('#BankTemplate').html();
+    var template = Handlebars.compile(source);
+    var html = template();
+    this.$el.html(html);
+    this.parent.$el.append(this.el);
+  },
+
+  events: {
+    "click a.print": "print",
+    "click a.next": "next",
+    "click a.bank-1-option": "option1Select",
+    "click a.bank-2-option": "option2Select"
+  },
+
+  option1Select: function(e){
+    e.preventDefault();
+    app.User.set({has_bank_account: $(e.target).attr('data-has_bank_account') === 'true' });
+    this.$el.find(".bank-1-option.selected").removeClass('selected');
+    $(e.target).addClass('selected');
+
+    if(app.User.get('has_bank_account') == true){
+      this.$el.find(".question-2-wrap").fadeIn();
+      this.$el.find(".nyc-offerings-wrap").addClass('hide');
+    }else{
+      this.$el.find(".question-2-wrap").fadeOut();
+      this.$el.find(".nyc-offerings-wrap").removeClass('hide');
+      this.$el.find('.modal-wrap').removeClass('hide');
+    }
+  },
+
+  option2Select: function(e){
+    e.preventDefault();
+    app.User.set({has_high_fees: $(e.target).attr('data-has_high_fees') === 'true' });
+    this.$el.find(".bank-2-option.selected").removeClass('selected');
+    $(e.target).addClass('selected');
+    this.$el.find('.modal-wrap').removeClass('hide');
+  },
+
+  print: function(e){
+    e.preventDefault();
+    this.parent.print({asset: $(e.target).attr('data-print')});
+  },
+
+  next: function(e) {
+    this.$el.remove();
+    this.parent.nextStep();
+  }
+
+});
+
+app.CreditView = Backbone.View.extend({
+  tagName: "section",
+  id: "Credit",
+
+  initialize: function(options) {
+    this.parent = options.parent;
+  },
+
+  render: function(){
+    var source = $('#CreditTemplate').html();
+    var template = Handlebars.compile(source);
+    var html = template();
+    this.$el.html(html);
+    this.parent.$el.append(this.el);
+  },
+
+  events: {
+    "click a.credit-option": "optionSelect",
+    "click a.print": "print",
+    "click a.next": "next"
+  },
+
+  optionSelect: function(e){
+    e.preventDefault();
+    app.User.set({has_credit_knowledge: $(e.target).attr('data-has_credit_knowledge') === 'true' });
+    if( app.User.get('has_credit_knowledge') ){
+      this.next();
+    }else{
+      this.$el.find('.modal-wrap').removeClass('hide');
+    }
+  },
+
+  print: function(e){
+    e.preventDefault();
+    this.parent.print({asset: $(e.target).attr('data-print')});
+  },
+
+  next: function(e) {
+    e.preventDefault();
     this.$el.remove();
     this.parent.nextStep();
   }

@@ -2,7 +2,7 @@
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
-        <title>Nek</title>
+        <title>New Americans Kiosk</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -81,6 +81,7 @@
         <script id="OriginTemplate" type="text/x-handlebars-template">
             <h2>{{ I18n "origin-from" }}</h2>
             <select id="select-country">
+                <option value=""></option>
                 <option value="AF">Afghanistan</option>
                 <option value="AX">&Aring;land Islands</option>
                 <option value="AL">Albania</option>
@@ -330,6 +331,7 @@
             </select>
             <h2>{{ I18n "origin-live" }}</h2>
             <select id="select-borough">
+                <option value=""></option>
                 <option value="manhattan">Manhattan</option>
                 <option value="brooklyn">Brooklyn</option>
                 <option value="queens">Queens</option>
@@ -337,6 +339,76 @@
                 <option value="statenisland">Staten Island</option>
             </select>
         </script>
+
+        <script id="ConcernsTemplate" type="text/x-handlebars-template">
+            <div class="modal-wrap hide">
+                <div class="modal">
+                    <strong class="true hide">{{ I18n "concerns-yes-lede" }}</strong>
+                    <strong class="false hide">{{ I18n "concerns-no-lede" }}</strong>
+                    <h1>{{ I18n "concerns-information" }}</h1>
+                    <em>{{ I18n "concerns-details" }}</em>
+
+                    <h3>{{ I18n "concerns-moia-name" }}</h3>
+                    <strong>{{ I18n "concerns-moia-number" }}</strong>
+                    <p>{{ I18n "concerns-moia-description" }}</p>
+
+                    <h3>{{ I18n "concerns-ofe-name" }}</h3>
+                    <strong>{{ I18n "concerns-ofe-number" }}</strong>
+                    <p>{{ I18n "concerns-ofe-description" }}</p>
+
+                    <h3>{{ I18n "concerns-cfpb-name" }}</h3>
+                    <strong>{{ I18n "concerns-cfpb-number" }}</strong>
+                    <p>{{ I18n "concerns-cfpb-description" }}</p>
+
+                    <h2>{{ I18n "concerns-prompt-1" }} <a href="#" class="print">{{ I18n "concerns-prompt-2" }}</a></h2>
+                    <a class="next big-button" href="#">{{ I18n "concerns-next" }}</a>
+                </div>
+            </div>
+
+            <h1>{{ I18n "concerns-question" }}</h1>
+            <a href="#" class="concern-option big-button" data-concerned="true">{{ I18n "concerns-yes" }}</a>
+            <a href="#" class="concern-option big-button" data-concerned="false">{{ I18n "concerns-no" }}</a>
+        </script>
+
+        <script id="BankTemplate" type="text/x-handlebars-template">
+            <div class="modal-wrap hide">
+                <div class="modal">
+                    <h1>{{ I18n "bank-should-shop" }}</h1>
+                    <a href="#" class="print" data-print="bank.pdf">{{ I18n "bank-print-prompt-1" }}</a>
+                    <div class="nyc-offerings-wrap">
+                        <h1>{{ I18n "bank-nyc-offerings" }}</h1>
+                        <a href="#" class="print">{{ I18n "bank-print-prompt-2" }}</a>
+                    </div>
+                    <a class="next big-button" href="#"">{{ I18n "bank-next" }}</a>
+                </div>
+            </div>
+
+            <h1>{{ I18n "bank-question-1" }}</h1>
+            <a href="#" class="bank-1-option big-button toggle" data-has_bank_account="true">{{ I18n "bank-yes" }}</a>
+            <a href="#" class="bank-1-option big-button toggle" data-has_bank_account="false">{{ I18n "bank-no" }}</a>
+
+            <div class="question-2-wrap hide">
+                <h1>{{ I18n "bank-question-2" }}</h1>
+                <a href="#" class="bank-2-option big-button toggle" data-has_high_fees="true">{{ I18n "bank-yes" }}</a>
+                <a href="#" class="bank-2-option big-button toggle" data-has_high_fees="false">{{ I18n "bank-no" }}</a>
+            </div>
+        </script>
+
+        <script id="CreditTemplate" type="text/x-handlebars-template">
+            <div class="modal-wrap hide">
+                <div class="modal">
+                    <h1>{{ I18n "credit-info" }}</h1>
+                    <a href="#" class="print" data-print="credit1.pdf">{{ I18n "credit-print-prompt-1" }}</a>
+                    <a href="#" class="print" data-print="credit2.pdf">{{ I18n "credit-print-prompt-2" }}</a>
+                    <a class="next big-button" href="#"">{{ I18n "credit-next" }}</a>
+                </div>
+            </div>
+
+            <h1>{{ I18n "credit-question" }}</h1>
+            <a href="#" class="credit-option big-button toggle" data-has_credit_knowledge="true">{{ I18n "credit-yes" }}</a>
+            <a href="#" class="credit-option big-button toggle" data-has_credit_knowledge="false">{{ I18n "credit-no" }}</a>
+        </script>
+
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
