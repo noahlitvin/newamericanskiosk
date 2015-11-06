@@ -4,9 +4,9 @@ Handlebars.registerHelper('I18n',
   }
 );
 $.i18n({locale: 'en'}).load( {
-    en: '../i18n/en.json',
-    es: '../i18n/es.json',
-    zh: '../i18n/zh.json'
+    en: 'i18n/en.json',
+    es: 'i18n/es.json',
+    zh: 'i18n/zh.json'
 } );
 
 app = {};
@@ -83,7 +83,7 @@ app.NewAmericansKioskView = Backbone.View.extend({
       alert('Not available yet. Sorry!');
       return;
     }
-    var target = "../print/" + app.User.get('locale') + "/" + options.asset
+    var target = "print/" + app.User.get('locale') + "/" + options.asset
     var w = window.open(target);
     w.print();
   }
@@ -159,11 +159,11 @@ app.AvatarView = Backbone.View.extend({
   },
 
   update_country: function(newValue) {
-    $(".flag").removeClass('invisible').css("background-image","url('/bower_components/flag-icon-css/flags/4x3/"+newValue.toLowerCase()+".svg')" );
+    $(".flag").removeClass('invisible').css("background-image","url('bower_components/flag-icon-css/flags/4x3/"+newValue.toLowerCase()+".svg')" );
   },
 
   update_borough: function(newValue) {
-    $(".background").addClass('up').css("background-image","url('/images/background/"+newValue.toLowerCase()+".svg')" );
+    $(".background").addClass('up').css("background-image","url('images/background/"+newValue.toLowerCase()+".svg')" );
   },
 
   update_has_bank_account: function(newValue) {
