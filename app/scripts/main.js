@@ -18,7 +18,8 @@ app.steps = [
     "OriginView",
     "ConcernsView",
     "BankView",
-    "CreditView"
+    "CreditView",
+    "DoneView"
 ];
 app.currentStep = 0;
 
@@ -79,13 +80,13 @@ app.NewAmericansKioskView = Backbone.View.extend({
   },
 
   print: function(options) {
-    if(!options.asset){
-      alert('Not available yet. Sorry!');
+    //if(!options.asset){
+      alert('No printer is available right now. Sorry!');
       return;
-    }
-    var target = "print/" + app.User.get('locale') + "/" + options.asset
-    var w = window.open(target);
-    w.print();
+    //}
+    //var target = "print/" + app.User.get('locale') + "/" + options.asset
+    //var w = window.open(target);
+    //w.print();
   }
 
 });
@@ -465,4 +466,20 @@ app.CreditView = app.BaseStepView.extend({
 
 });
 
+app.DoneView = app.BaseStepView.extend({
+  id: "Done",
+  templateSelector: '#DoneTemplate',
+  className: "full-width",
+
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click": "restart"
+    });
+  },
+
+  restart: function() {
+    var url = [location.protocol, '//', location.host, location.pathname].join('');
+    window.location.replace(url);
+  }
+});
 

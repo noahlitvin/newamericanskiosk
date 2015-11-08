@@ -105,9 +105,13 @@ svg {
     background: #ffffff;
     padding: 25px;
     width: 70%;
-    height: 80vh;
+    max-height: 80vh;
     margin: 10vh auto 0;
     overflow-y: auto; }
+    .modal-wrap .modal a {
+      font-weight: bold; }
+    .modal-wrap .modal img {
+      max-width: 100%; }
 
 section {
   display: block;
@@ -122,6 +126,13 @@ section {
   z-index: 1; }
   section.full-width {
     width: 100%; }
+  section .center-content {
+    display: block;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
 
 a {
   text-decoration: none;
@@ -207,13 +218,17 @@ a {
       #stage .character .hair[data-color='5'] path {
         fill: #e9ebf5; }
       #stage .character .hair[data-style='1'] {
-        transform: translate(-1px, -19px) scale(0.99); }
+        -webkit-transform: translate(-2px, -119px) scale(0.98);
+        transform: translate(-2px, -119px) scale(0.98); }
       #stage .character .hair[data-style='2'] {
-        transform: translate(-1px, -19px) scale(1.1); }
+        -webkit-transform: translate(-2px, -109px) scale(1.1);
+        transform: translate(-2px, -109px) scale(1.1); }
       #stage .character .hair[data-style='3'] {
-        transform: translate(0px, -24px) scale(0.86); }
+        -webkit-transform: translate(-1px, -154px) scale(0.86);
+        transform: translate(-1px, -154px) scale(0.86); }
       #stage .character .hair[data-style='4'] {
-        transform: translate(0px, -27px) scale(0.86); }
+        -webkit-transform: translate(0px, -157px) scale(0.86);
+        transform: translate(0px, -157px) scale(0.86); }
     #stage .character .base .body-option {
       visibility: hidden; }
     #stage .character .base[data-gender='male'] .male-body {
@@ -296,11 +311,50 @@ a {
 .row .column {
   display: inline-block;
   float: left;
-  width: 33%; }
+  width: 33%;
+  padding: 0 5px; }
 
+section#Welcome a[data-hairstyle] {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-indent: -9999999px;
+  height: 70px;
+  width: 80px;
+  margin: 0 10px; }
+section#Welcome a[data-hairstyle="1"] {
+  background-image: url("../images/character/hair-1.svg"); }
+section#Welcome a[data-hairstyle="2"] {
+  background-image: url("../images/character/hair-2.svg"); }
+section#Welcome a[data-hairstyle="3"] {
+  background-image: url("../images/character/hair-3.svg"); }
+section#Welcome a[data-hairstyle="4"] {
+  background-image: url("../images/character/hair-4.svg"); }
+section#Welcome .skin-wrap {
+  max-width: 85%;
+  margin: 0 auto; }
 section#Welcome .next {
   position: absolute;
   width: 100%;
-  bottom: 0; }
+  bottom: 20px; }
+
+section#Origin .selectize-control {
+  width: 400px; }
+section#Origin ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px; }
+section#Origin ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); }
+
+section#Concerns .center-content {
+  width: 450px; }
+
+section#Bank .center-content {
+  width: 450px; }
+
+section#Credit .center-content {
+  width: 450px; }
 
 /*# sourceMappingURL=main.css.map */
