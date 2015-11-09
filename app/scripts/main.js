@@ -6,7 +6,8 @@ Handlebars.registerHelper('I18n',
 $.i18n({locale: 'en'}).load( {
     en: 'i18n/en.json',
     es: 'i18n/es.json',
-    zh: 'i18n/zh.json'
+    zh: 'i18n/zh.json',
+    ar: 'i18n/ar.json'
 } );
 
 app = {};
