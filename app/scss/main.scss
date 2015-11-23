@@ -4,7 +4,8 @@
 // @import url("../bower_components/normalize-css/normalize.css");
 @import "rangeslider";
 
-$primary-color: #53BB96;
+$primary-color: #166E9F;
+$secondary-color: #3e9d7b;
 
 html {
   box-sizing: border-box;
@@ -39,9 +40,8 @@ svg { overflow:visible; }
 		display:block;
 		background:#ffffff;
 		padding:25px;
-		width:70%;
-		max-height:80vh;
-		margin:10vh auto 0;
+		width:100%;
+		height:100%;
 		overflow-y:auto;
 		a { font-weight:bold; }
 		img { max-width:100%; }
@@ -115,20 +115,22 @@ a {
 	-webkit-transition:all .3s;
 	transition:all .3s;
 	&:active {
-		background:#3e9d7b;
-	}
-
-	&.toggle {
-		color:#000000;
-		background:#ffffff;
-		-webkit-box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
-		-moz-box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
-		box-shadow: 0px 0px 6px 2px rgba(232,232,232,1);
+		background:$secondary-color;
 	}
 	&.toggle.selected {
-		color:#ffffff;
-		background:$primary-color;
+		background:$secondary-color;
 	}
+}
+.half-size {
+	display:inline-block;
+	width:45%;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+label {
+	display:block;
+	padding-bottom:12px;
 }
 
 #stage {
@@ -150,7 +152,7 @@ a {
 		transform:translateY(-50%);
 		.hair {
 			position:absolute;
-			top:0;
+			top:-6%;
 			width:100%;
 			&[data-color='1'] path { fill:#a8701d; }
 			&[data-color='2'] path { fill:#fdd744; }
@@ -159,21 +161,23 @@ a {
 			&[data-color='5'] path { fill:#e9ebf5; }
 
 			&[data-style='1'] {
-				-webkit-transform: translate(-2px,-119px) scale(.98);
-				transform: translate(-2px,-119px) scale(.98);
+    			top: -7%;
+    			left: -4%;
+    			width: 105%;
 			}
 			&[data-style='2'] {
-				-webkit-transform: translate(-2px,-109px) scale(1.1);
-				transform: translate(-2px,-109px) scale(1.1);
+    			width: 105%;
+    			left: -4%;
 			}
 			&[data-style='3'] {
-				-webkit-transform: translate(-1px,-154px) scale(.86);
-				transform: translate(-1px,-154px) scale(.86);
+				width:90%;
+				left:5%;
 			}
 			&[data-style='4'] {
-				-webkit-transform: translate(0px,-157px) scale(.86);
-				transform: translate(0px,-157px) scale(.86);
+				width:96%;
+				left:2%;
 			}
+
 		}
 		.base {
 			.body-option { visibility:hidden; }
@@ -292,7 +296,7 @@ section#Welcome {
 	.next {
 		position:absolute;
 		width:100%;
-		bottom:20px;
+		bottom:0;
 	}
 }
 

@@ -81,13 +81,13 @@ app.NewAmericansKioskView = Backbone.View.extend({
   },
 
   print: function(options) {
-    //if(!options.asset){
+    if(!options.asset){
       alert('No printer is available right now. Sorry!');
       return;
-    //}
-    //var target = "print/" + app.User.get('locale') + "/" + options.asset
-    //var w = window.open(target);
-    //w.print();
+    }
+    var target = "print/" + app.User.get('locale') + "/" + options.asset
+    var w = window.open(target);
+    w.print();
   }
 
 });
@@ -362,6 +362,7 @@ app.WelcomeView = app.BaseStepView.extend({
     $(e.target).addClass('selected');
     app.User.set({haircolor: $(e.target).attr('data-haircolor') });
     this.$el.find('.skin-wrap').removeClass('hide');
+    this.$el.find('.next').show();
   }
 
 });
@@ -369,6 +370,12 @@ app.WelcomeView = app.BaseStepView.extend({
 app.OriginView = app.BaseStepView.extend({
   id: "Origin",
   templateSelector: '#OriginTemplate',
+
+  events: function(){
+    return _.extend({},app.BaseStepView.prototype.events,{
+      "click .borough": "select_borough"
+    });
+  },
 
   afterRender: function(){
     var view = this;
@@ -378,12 +385,12 @@ app.OriginView = app.BaseStepView.extend({
         view.$el.find('.borough-wrap').removeClass('hide');
       }
     });
-    view.$el.find('#select-borough').selectize({
-      onChange: function(value) {
-        view.parent.model.set('borough',value);
-        view.next();
-      }
-    });
+  },
+
+  select_borough: function(e){
+    e.preventDefault();
+    this.parent.model.set('borough', $(e.target).attr('data-borough') );
+    this.next();
   }
 
 });

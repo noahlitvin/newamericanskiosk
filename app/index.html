@@ -59,23 +59,26 @@
         <script id="WelcomeTemplate" type="text/x-handlebars-template">
             <div class="modal-wrap">
                 <div class="modal">
-                    <em>{{ I18n "welcome-hello" }}</em>
+                    {{ I18n "welcome-hello" }}
                     <h1>
                         {{ I18n "welcome-explanation-1" }}
                     </h1>
-                    <strong>{{ I18n "welcome-explanation-2" }}</strong>
-                    <br><br>
+                    <h1>
+                        <em>{{ I18n "welcome-explanation-2" }}</em>
+                    </h1>
                     <a class="close-modal big-button" href="#">{{ I18n "welcome-accept" }}</a>
                 </div>
             </div>
 
             <h2>{{ I18n "welcome-instruction" }}</h2>
 
+            <label>{{ I18n "welcome-choose-gender" }}</label>
             <a href="#" class="button gender" data-gender="male">{{ I18n "welcome-male" }}</a>
             <a href="#" class="button gender" data-gender="female">{{ I18n "welcome-female" }}</a>
             <a href="#" class="button gender" data-gender="other">{{ I18n "welcome-other" }}</a>
             <br><br><br>
             <div class="hairstyle-wrap hide">
+                <label>{{ I18n "welcome-choose-hair-style" }}</label>
                 <a href="#" class="button hairstyle" data-hairstyle="1">Style 1</a>
                 <a href="#" class="button hairstyle" data-hairstyle="2">Style 2</a>
                 <a href="#" class="button hairstyle" data-hairstyle="3">Style 3</a>
@@ -83,6 +86,7 @@
             </div>
             <br><br>
             <div class="haircolor-wrap hide">
+                <label>{{ I18n "welcome-choose-hair-color" }}</label>
                 <a href="#" class="button color haircolor" data-haircolor="1" style="background:#a8701d"></a>
                 <a href="#" class="button color haircolor" data-haircolor="2" style="background:#fdd744"></a>
                 <a href="#" class="button color haircolor" data-haircolor="3" style="background:#d96b0c"></a>
@@ -91,10 +95,11 @@
             </div>
             <br><br>
             <div class="skin-wrap hide">
+                <label>{{ I18n "welcome-choose-skin" }}</label>
                 <input id="skin" type="range">
             </div>
 
-            <a href="#" class="big-button next">{{ I18n "welcome-done" }}</a>
+            <a href="#" class="big-button next" style="display:none;">{{ I18n "welcome-done" }}</a>
 
         </script>
 
@@ -351,15 +356,13 @@
                 <option value="ZW">Zimbabwe</option>
             </select>
             <div class="borough-wrap hide">
-            <h2>{{ I18n "origin-live" }}</h2>
-            <select id="select-borough" data-selectize-readonly>
-                <option value=""></option>
-                <option value="manhattan">Manhattan</option>
-                <option value="brooklyn">Brooklyn</option>
-                <option value="queens">Queens</option>
-                <option value="bronx">Bronx</option>
-                <option value="statenisland">Staten Island</option>
-            </select>
+                <h2>{{ I18n "origin-live" }}</h2>
+                <a href="#" class="button borough" data-borough="manhattan">Manhattan</a>
+                <a href="#" class="button borough" data-borough="brooklyn">Brooklyn</a>
+                <a href="#" class="button borough" data-borough="queens">Queens</a>
+                <a href="#" class="button borough" data-borough="bronx">Bronx</a>
+                <a href="#" class="button borough" data-borough="statenisland">Staten Island</a>
+                <a href="#" class="button borough" data-borough="other">Other</a>
             </div>
         </div>
         </script>
@@ -403,9 +406,8 @@
 
             <div class="center-content">
             <h1>{{ I18n "concerns-question" }}</h1>
-            <a href="#" class="concern-option big-button" data-concerned="true">{{ I18n "concerns-yes" }}</a>
-            <br><br>
-            <a href="#" class="concern-option big-button" data-concerned="false">{{ I18n "concerns-no" }}</a>
+            <a href="#" class="concern-option big-button half-size" data-concerned="true">{{ I18n "concerns-yes" }}</a>
+            <a href="#" class="concern-option big-button half-size" data-concerned="false">{{ I18n "concerns-no" }}</a>
             </div>
         </script>
 
@@ -426,16 +428,14 @@
 
             <div class="center-content">
             <h1>{{ I18n "bank-question-1" }}</h1>
-            <a href="#" class="bank-1-option big-button toggle" data-has_bank_account="true">{{ I18n "bank-yes" }}</a>
-            <br><br>
-            <a href="#" class="bank-1-option big-button toggle" data-has_bank_account="false">{{ I18n "bank-no" }}</a>
+            <a href="#" class="bank-1-option big-button toggle half-size" data-has_bank_account="true">{{ I18n "bank-yes" }}</a>
+            <a href="#" class="bank-1-option big-button toggle half-size" data-has_bank_account="false">{{ I18n "bank-no" }}</a>
 
             <div class="question-2-wrap hide">
                 <br><br>
                 <h1>{{ I18n "bank-question-2" }}</h1>
-                <a href="#" class="bank-2-option big-button toggle" data-has_high_fees="true">{{ I18n "bank-yes" }}</a>
-                <br><br>
-                <a href="#" class="bank-2-option big-button toggle" data-has_high_fees="false">{{ I18n "bank-no" }}</a>
+                <a href="#" class="bank-2-option big-button toggle half-size" data-has_high_fees="true">{{ I18n "bank-yes" }}</a>
+                <a href="#" class="bank-2-option big-button toggle half-size" data-has_high_fees="false">{{ I18n "bank-no" }}</a>
             </div>
             </div>
         </script>
@@ -454,9 +454,8 @@
 
             <div class="center-content">
                 <h1>{{ I18n "credit-question" }}</h1>
-                <a href="#" class="credit-option big-button toggle" data-has_credit_knowledge="true">{{ I18n "credit-yes" }}</a>
-                <br><br>
-                <a href="#" class="credit-option big-button toggle" data-has_credit_knowledge="false">{{ I18n "credit-no" }}</a>
+                <a href="#" class="credit-option big-button toggle half-size" data-has_credit_knowledge="true">{{ I18n "credit-yes" }}</a>
+                <a href="#" class="credit-option big-button toggle half-size" data-has_credit_knowledge="false">{{ I18n "credit-no" }}</a>
             </div>
         </script>
 
