@@ -218,7 +218,7 @@ label {
       #stage .character .hair[data-color='4'] path {
         fill: #483932; }
       #stage .character .hair[data-color='5'] path {
-        fill: #e9ebf5; }
+        fill: #dadce5; }
       #stage .character .hair[data-style='1'] {
         top: -7%;
         left: -4%;
@@ -341,15 +341,24 @@ section#Welcome .next {
   width: 100%;
   bottom: 0; }
 
+section#Origin .center-content {
+  width: 90%; }
 section#Origin .selectize-control {
-  width: 400px; }
+  width: 100%; }
+  section#Origin .selectize-control .not-full {
+    height: 54px; }
+  section#Origin .selectize-control .item, section#Origin .selectize-control .option {
+    font-size: 24px;
+    line-height: 36px; }
 section#Origin ::-webkit-scrollbar {
   -webkit-appearance: none;
-  width: 7px; }
+  width: 14px; }
 section#Origin ::-webkit-scrollbar-thumb {
-  border-radius: 4px;
+  border-radius: 7px;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5); }
+section#Origin .button.borough {
+  margin-bottom: 12px; }
 
 section#Concerns .center-content {
   width: 450px; }
