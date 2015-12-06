@@ -11,7 +11,7 @@
 	"welcome-choose-gender": "Choose your gender:",
 	"welcome-choose-hair-style": "Choose your hair style:",
 	"welcome-choose-hair-color": "Choose your hair color:",
-	"welcome-choose-skin": "Slide the circle to adjust your skin tone:",
+	"welcome-choose-skin": "Slide the circle:",
 
 	"origin-from": "My country of origin is",
 	"origin-live": "and I currently live in",
@@ -46,8 +46,8 @@
 	"bank-print-prompt-2": "Touch here to print more information on these options.",
 	"bank-next": "Next",
 
-	"credit-question": "Do you what a credit score is, and have your checked yours recently?",
-	"credit-yes": "Yes.",
+	"credit-question": "Do you know what a credit score is, and have your checked yours recently?",
+	"credit-yes": "Yes",
 	"credit-no": "No",
 	"credit-info": "Your credit score is a number that indicates your capacity to repay a loan. A good credit score makes it easier to buy a home, get a credit card, and more.",
 	"credit-print-prompt-1": "Touch here to print information on how to check your credit score.",

@@ -22,18 +22,17 @@ app.steps = [
     "CreditView",
     "DoneView"
 ];
+
 app.currentStep = 0;
 
 $(window).load(function() {
     app.Router = new app.NewAmericansKioskRouter();
     app.User = new app.NewAmericansKioskUser();
-
-    app.Router.on('route:init', function(){
-        var main_view = new app.NewAmericansKioskView({step: 0, model: app.User});
-    });
+    app.View = new app.NewAmericansKioskView({model: app.User});
 
     app.Router.on('route:gotostep', function( step ){ 
-        var main_view = new app.NewAmericansKioskView({step: step, model: app.User});
+        app.currentStep = step;
+        app.View.renderCurrentStep();
     });
 
     Backbone.history.start();
@@ -41,8 +40,7 @@ $(window).load(function() {
 
 app.NewAmericansKioskRouter = Backbone.Router.extend({
     routes: {
-        "step/:id": "gotostep",
-        "*path": "init"
+        "step/:id": "gotostep"
     }
 });
 
@@ -58,11 +56,7 @@ app.NewAmericansKioskUser = Backbone.Model.extend({
 
 app.NewAmericansKioskView = Backbone.View.extend({
   initialize: function(options){
-    this.model = options.model
-    app.currentStep = 0;
-    if(options.step){
-        app.currentStep = options.step;
-    }
+    this.model = options.model;
     this.$el = $(".container");
     this.renderCurrentStep();
 
@@ -81,13 +75,13 @@ app.NewAmericansKioskView = Backbone.View.extend({
   },
 
   print: function(options) {
-    if(!options.asset){
+    //if(!options.asset){
       alert('No printer is available right now. Sorry!');
       return;
-    }
-    var target = "print/" + app.User.get('locale') + "/" + options.asset
-    var w = window.open(target);
-    w.print();
+    //}
+    //var target = "print/" + app.User.get('locale') + "/" + options.asset
+    //var w = window.open(target);
+    //w.print();
   }
 
 });
@@ -110,7 +104,7 @@ app.AvatarView = Backbone.View.extend({
     var html = template();
     this.$el.html(html);
     this.$el.find('.character .base').load( "images/character/base.svg");
-    this.parent.$el.append(this.el);
+    this.parent.$el.parent().prepend(this.el);
   },
 
   update: function() {
@@ -255,7 +249,7 @@ app.BaseStepView = Backbone.View.extend({
     var template = Handlebars.compile(source);
     var html = template();
     this.$el.html(html);
-    this.parent.$el.append(this.el);
+    this.parent.$el.html(this.el);
 
     var view = this;
     _.defer(function(){
