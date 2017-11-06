@@ -75,13 +75,13 @@ app.NewAmericansKioskView = Backbone.View.extend({
   },
 
   print: function(options) {
-    //if(!options.asset){
+    if(!options.asset){
       alert('No printer is available right now. Sorry!');
       return;
-    //}
-    //var target = "print/" + app.User.get('locale') + "/" + options.asset
-    //var w = window.open(target);
-    //w.print();
+    }
+    var target = "print/" + app.User.get('locale') + "/" + options.asset
+    var w = window.open(target);
+    w.print();
   }
 
 });

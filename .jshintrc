@@ -17,8 +17,8 @@
     "strict": true,
     "jquery": true,
     "globals": {
-        "Nek": true,
-        "nek": true,
+        "Newamericanskiosk": true,
+        "newamericanskiosk": true,
         "_": false,
         "Backbone": false,
         "JST": false,
